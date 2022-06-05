@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="subscribe()">Subscribe</button>
+
+  <script>
+    async function subscribe() {
+      let sw = await navigator.serviceWorker.ready;
+      let push = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey:
+          'BEOt9LLV_ms2VJakExSHkx8k5fynSslVS-dxvuEOHLRhtdQd7rGIvQ8B1OI9wCkyVu_dOIOgGN7MCFMLidDeIAU'
+      });
+      console.log(JSON.stringify(push));
+    }
+
+    if ('serviceWorker' in navigator) {
+      addEventListener('load', async () => {
+        let sw = await navigator.serviceWorker.register('./sw.js');
+      });
+    }
+
+
+  </script>
+</body>
+
+</html>
